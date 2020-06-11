@@ -1,0 +1,91 @@
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'vim-scripts/wombat'
+if = '&termguicolors'
+hook_add = '''
+    augroup ModifyWombat
+        autocmd!
+        autocmd ColorScheme * highlight Search guifg=#353535 guibg=#cae684
+        autocmd ColorScheme * highlight Todo guifg=#353535 guibg=#cae684
+        autocmd ColorScheme * highlight WildMenu guifg=#353535 guibg=#cae684
+        autocmd ColorScheme * highlight ErrorMsg guifg=#252525 guibg=#e5786d
+        autocmd ColorScheme * highlight Error guifg=#252525 guibg=#e5786d
+        autocmd ColorScheme * highlight CursorLineNr guifg=#e5786d guibg=#000000
+        autocmd ColorScheme * highlight! link SignColumn LineNr
+    augroup END
+    autocmd MyAutoCmd VimEnter * nested colorscheme wombat
+'''
+
+[[plugins]]
+repo = 'michalbachowski/vim-wombat256mod'
+if = '!&termguicolors'
+hook_add = '''
+    autocmd MyAutoCmd VimEnter * nested colorscheme wombat256mod
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = 'context_filetype.vim'
+hook_add = '''
+    let g:precious_enable_switch_CursorMoved = { '*': 0, 'help': 1}
+    autocmd MyAutoCmd InsertEnter * :PreciousSwitch
+    autocmd MyAutoCmd InsertLeave * :PreciousReset
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    set noshowmode
+    let g:lightline = {
+        \ 'active' : {
+            \ 'left': [
+                \ [ 'mode', 'paste' ],
+                \ [ 'readonly', 'filename', 'modified' ],
+                \ [ 'fugitive' ],
+            \ ],
+            \ 'right': [
+                \ [ 'lineinfo' ],
+                \ [ 'percent' ],
+                \ [ 'fileformat', 'fileencoding', 'filetype' ],
+                \ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+            \ ],
+        \ },
+        \ 'inactive': {
+            \ 'left': [
+                \ [ 'filename' ],
+                \ [ 'fugitive' ],
+            \ ],
+            \ 'right': [
+                \ [ 'lineinfo' ],
+                \ [ 'percent' ],
+            \ ],
+        \ },
+        \ 'tabline': {
+            \ 'left': [
+                \ [ 'tabs' ],
+            \ ],
+            \ 'right': [
+                \ [ 'clone' ],
+            \ ],
+        \ },
+        \ 'colorscheme': 'wombat',
+    \ }
+'''
+
+[[plugins]]
+repo = 'rickhowe/diffchar.vim'
+hood_add = '''
+    let g:DiffUnit = 'Char'
+    let g:DiffColors = 3
+'''
