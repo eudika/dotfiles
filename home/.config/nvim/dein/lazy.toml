@@ -56,10 +56,14 @@ hook_add = '''
 '''
 hook_post_source = '''
 
+    let s:ignore_globs = ['.git/', '.ropeproject/', '__pycache__/', 'node_modules',
+                \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', 'build/', '*.class']
+
     " Change file/rec and grep command to use ag.
     if executable('ag')
+        let s:ag_ignore_options = map(deepcopy(s:ignore_globs), { k, v -> '--ignore=' . v })
         call denite#custom#var('file/rec', 'command',
-                    \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+                    \ ['ag', '--follow', '--nocolor'] + s:ag_ignore_options + ['--nogroup', '-g', ''])
 
         call denite#custom#var('grep', 'command', ['ag'])
         call denite#custom#var('grep', 'default_opts',
@@ -81,12 +85,10 @@ hook_post_source = '''
                 \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
     call denite#custom#alias('source', 'file/rec/py', 'file/rec')
-    call denite#custom#var('file/rec/py', 'command',['scantree.py'])
+    call denite#custom#var('file/rec/py', 'command', ['scantree.py'])
 
     " Change ignore_globs
-    call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
-                \ [ '.git/', '.ropeproject/', '__pycache__/',
-                \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', 'build/', '*.class', 'node_modules/'])
+    call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', s:ignore_globs)
 
 
     "call denite#custom#source('file/rec', 'matchers',
@@ -284,7 +286,7 @@ hook_add = '''
     \ }
     let g:quickrun_no_default_key_mappings = 1
     nmap <Leader>e :<C-u>cclose<CR>:write<CR>:QuickRun -mode n<CR>
-''' 
+'''
 
 # TODO: support ts
 [[plugins]]
@@ -319,6 +321,7 @@ on_ft = 'typescript'
 
 [[plugins]]
 repo = 'mhartington/nvim-typescript'
+#build = './install.sh'
 build = 'npm install -g typescript && cd rplugin/node/nvim_typescript && npm install && npm run build'
 on_ft = 'typescript'
 hook_add = '''
@@ -356,7 +359,7 @@ hook_add = '''
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
-on_ft = ['html', 'css']
+on_ft = ['html', 'css', 'markdown']
 hook_add = '''
     let g:user_emmet_leader_key=','
     let g:user_emmet_settings = {

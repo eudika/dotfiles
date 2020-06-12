@@ -116,7 +116,7 @@ noremap <SPACE>l $
 
 " < Normal Mode >
 let g:mapleader = ","
-nnoremap \ , 
+nnoremap \ ,
 
 nnoremap Q <NOP>
 nnoremap <CR> A<CR><ESC>
