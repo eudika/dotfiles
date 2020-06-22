@@ -313,10 +313,7 @@ repo = 'othree/yajs.vim'
 on_ft = 'javascript'
 
 [[plugins]]
-# Switch repo until my PR is merged
-#repo = 'HerringtonDarkholme/yats.vim'
-repo = 'eudika/yats.vim'
-rev = 'fix-funcimpl'
+repo = 'HerringtonDarkholme/yats.vim'
 on_ft = 'typescript'
 
 [[plugins]]
