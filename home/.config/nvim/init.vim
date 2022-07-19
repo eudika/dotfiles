@@ -110,6 +110,14 @@ augroup END
 
 " <<< Mappings >>
 
+" < All >
+
+if g:is_windows
+    noremap <C-z> <NOP>
+    inoremap <C-z> <NOP>
+    cnoremap <C-z> <NOP>
+endif
+
 " < Normal, Visual, Select, Operator-pending Mode >
 noremap <SPACE>h ^
 noremap <SPACE>l $
