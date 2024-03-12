@@ -4,6 +4,7 @@
 vim.g.is_windows = vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1
 vim.g.is_mac = vim.fn.has('mac') == 1
 vim.g.is_linux = vim.fn.has('unix') == 1 and vim.fn.has('mac') ~= 1
+vim.g.is_gui = vim.fn.has('gui_running') == 1
 
 -- < Directories >
 -- default: '~/.config/nvim' (unix) or %LOCALAPPDATA%\nvim (win)
