@@ -16,7 +16,7 @@ require('lazy').setup('plugins', {
         rtp = {
             -- prevent resetting gui path
             reset = not vim.g.is_gui,
-        }
-    }
+        },
+    },
 })
 

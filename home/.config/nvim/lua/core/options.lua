@@ -6,7 +6,7 @@ local options = {
     fileencoding = 'utf-8',
     fileencodings = { 'utf-8', 'cp932', 'ucs-bom' },
     formatoptions = vim.opt.formatoptions._info.default .. 'mM',
-    ambiwidth = 'double',
+    ambiwidth = 'single',
 
     -- environment
     mouse = 'a',

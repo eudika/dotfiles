@@ -1,6 +1,14 @@
 local servers = {
     'lua_ls',
 }
+local configurations = {
+    lua_ls = function(opts)
+        opts.settings = {
+            Lua = { diagnostics = { globals = { 'vim' } } },
+        }
+    end,
+}
+
 return {
     'williamboman/mason-lspconfig.nvim',
     opts = {
@@ -19,11 +27,8 @@ return {
                 local lspconfig = require("lspconfig")
 
                 for _, server in pairs(servers) do
-                    if server == 'lua_ls' then
-                        opts.settings = {
-                            Lua = { diagnostics = { globals = { 'vim' } } },
-                        }
-                    end
+                    local configure = configurations[server]
+                    if configure ~= nil then configure(opts) end
                     lspconfig[server].setup(opts)
                 end
             end,
