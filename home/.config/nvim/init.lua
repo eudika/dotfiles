@@ -7,15 +7,22 @@ vim.g.is_linux = vim.fn.has('unix') == 1 and vim.fn.has('mac') ~= 1
 vim.g.is_gui = vim.fn.has('gui_running') == 1
 
 -- < Directories >
--- default: '~/.config/nvim' (unix) or %LOCALAPPDATA%\nvim (win)
+-- default:
+--   unix:     ~/.config/nvim
+--   windows:  %LOCALAPPDATA%\nvim
 vim.g.config_home = vim.env.XDG_CONFIG_HOME and vim.env.XDG_CONFIG_HOME .. '/nvim' or vim.fn.stdpath('config')
--- default: '~/.local/share/nvim' (unix) or %LOCALAPPDATA%\nvim-data (win)
+-- default:
+--   unix:    ~/.local/share/nvim
+--   windows: %LOCALAPPDATA%\nvim-data
 vim.g.data_home = vim.env.XDG_DATA_HOME and vim.env.XDG_DATA_HOME .. '/nvim' or vim.fn.stdpath('data')
--- default: '~/.cache/nvim' (unix) or %TEMP%\nvim (win)
+-- default:
+--   unix:    ~/.cache/nvim
+--   windows: %TEMP%\nvim
 vim.g.cache_home = vim.env.XDG_CACHE_HOME and vim.env.XDG_CACHE_HOME .. '/nvim' or vim.fn.stdpath('cache')
 
 
 -- << Modules >>
 require('core.options')
+require('core.commands')
 require('core.keymaps')
 require('setup-plugins')

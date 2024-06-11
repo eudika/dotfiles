@@ -14,6 +14,8 @@ return {
         { '<Leader>/', '<Cmd>Telescope current_buffer_fuzzy_find<Cr>' },
         { '<Leader>?', '<Cmd>Telescope help_tags<Cr>' },
         { '<Leader>B', '<Cmd>Telescope git_branches<Cr>' },
+        -- search config directory
+        { '<Leader>v', '<Cmd>lua require("telescope.builtin").find_files({cwd=vim.g.config_home})<Cr>' },
     },
     opts = function()
         local actions = require('telescope.actions')
